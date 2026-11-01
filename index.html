@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los deseos de Lili</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M28 36 L16 61 L29 54 L32 40 Z' fill='%23c2336a'/%3E%3Cpath d='M36 36 L48 61 L35 54 L32 40 Z' fill='%23c2336a'/%3E%3Cpath d='M29 32 L4 15 Q0 32 4 49 Z' fill='%23e0457b'/%3E%3Cpath d='M35 32 L60 15 Q64 32 60 49 Z' fill='%23e0457b'/%3E%3Cpath d='M29 32 L10 22 Q8 32 10 42 Z' fill='%23f28bb0'/%3E%3Cpath d='M35 32 L54 22 Q56 32 54 42 Z' fill='%23f28bb0'/%3E%3Cellipse cx='32' cy='32' rx='7' ry='9' fill='%23a4526f'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fde8ef'/%3E%3Cpath d='M28 36 L16 58 L29 52 L32 40 Z' fill='%23c2336a'/%3E%3Cpath d='M36 36 L48 58 L35 52 L32 40 Z' fill='%23c2336a'/%3E%3Cpath d='M29 32 L7 17 Q4 32 7 47 Z' fill='%23e0457b'/%3E%3Cpath d='M35 32 L57 17 Q60 32 57 47 Z' fill='%23e0457b'/%3E%3Cellipse cx='32' cy='32' rx='7' ry='9' fill='%23a4526f'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --rosa-fondo:#fff7fa;
+    --rosa-suave:#fbe4ec;
+    --rosa-claro:#f7dce6;
+    --rosa-medio:#a4526f;
+    --rosa-oscuro:#8e4268;
+    --texto:#4a2336;
+    --texto-suave:#7a5568;
+    --borde:#f4d9e3;
+    --ok:#2e8b57;
+    --warn:#c0762a;
+    --radio:24px;
+    --sombra:0 8px 24px rgba(164,82,111,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    background:var(--rosa-fondo);
+    color:var(--texto);
+    line-height:1.5;
+    min-height:100vh;
+  }
+  button{font-family:inherit;cursor:pointer;border:none}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(135deg,#fbd9e5 0%,#fde8ef 55%,#fff1f5 100%);
+    border-bottom:1px solid var(--borde);
+    text-align:center;
+    padding:64px 20px 56px;
+  }
+  .hero h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(2.4rem,7vw,4.6rem);
+    color:var(--rosa-oscuro);
+    line-height:1.1;
+    margin-bottom:26px;
+  }
+  .fecha{
+    display:inline-block;
+    background:#fff;
+    color:var(--rosa-medio);
+    font-weight:700;
+    padding:14px 28px;
+    border-radius:999px;
+    box-shadow:var(--sombra);
+    margin-bottom:26px;
+  }
+  .hero p{
+    max-width:700px;
+    margin:0 auto;
+    color:var(--texto-suave);
+    font-size:1.05rem;
+  }
+
+  /* ---------- CONTENEDOR ---------- */
+  .contenedor{max-width:1320px;margin:0 auto;padding:56px 24px 80px}
+  .barra{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .barra h2{font-size:1.9rem;color:var(--texto)}
+  .barra p{color:var(--texto-suave);font-size:.95rem;margin-top:14px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+
+  .btn{
+    padding:16px 22px;
+    border-radius:16px;
+    font-weight:700;
+    font-size:1rem;
+    transition:transform .15s,box-shadow .15s,background .15s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--sombra)}
+  .btn:active{transform:translateY(0)}
+  .btn-suave{background:var(--rosa-claro);color:var(--rosa-oscuro)}
+  .btn-suave:hover{background:#f3cfde}
+  .btn-fuerte{background:var(--rosa-medio);color:#fff}
+  .btn-fuerte:hover{background:var(--rosa-oscuro)}
+  .btn-peligro{background:#fde2e2;color:#b3261e}
+  .btn-block{display:block;width:100%;text-align:center}
+
+  /* ---------- FILTROS ---------- */
+  .filtros{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+  .chip{
+    background:#fff;border:1px solid var(--borde);color:var(--rosa-oscuro);
+    padding:8px 16px;border-radius:999px;font-weight:600;font-size:.9rem;
+  }
+  .chip.activo{background:var(--rosa-medio);color:#fff;border-color:var(--rosa-medio)}
+
+  /* ---------- GRID DE TARJETAS ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:26px;
+    align-items:start;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--borde);
+    border-radius:var(--radio);
+    overflow:hidden;
+    box-shadow:var(--sombra);
+    transition:transform .2s;
+    display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-4px)}
+  .card.reservado{opacity:.85}
+  .imagen{
+    height:270px;
+    background:var(--rosa-suave);
+    display:flex;align-items:center;justify-content:center;
+    font-size:4rem;
+    overflow:hidden;
+    position:relative;
+  }
+  .imagen img{width:100%;height:100%;object-fit:cover;display:block}
+  .card.reservado .imagen::after{
+    content:"Reservado 💝";
+    position:absolute;inset:auto 12px 12px auto;
+    background:rgba(142,66,104,.92);color:#fff;
+    padding:6px 14px;border-radius:999px;font-weight:700;font-size:.85rem;
+  }
+  .info{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .estado{
+    align-self:flex-start;
+    font-size:.88rem;padding:7px 14px;border-radius:999px;
+    background:var(--rosa-suave);color:var(--texto);
+  }
+  .estado.res{background:#fff0d9;color:var(--warn)}
+  .info h3{font-size:1.35rem;text-transform:uppercase;line-height:1.25;word-break:break-word}
+  .precio{font-size:1.5rem;font-weight:800;color:var(--rosa-medio)}
+  .precio.consultar{font-size:1.35rem}
+  .tienda{color:var(--texto-suave);font-size:.95rem;text-transform:uppercase}
+  .nota{text-transform:uppercase;font-size:1.02rem;word-break:break-word}
+  .botones{display:flex;flex-direction:column;gap:12px;margin-top:auto;padding-top:8px}
+  .botones .btn{padding:15px 12px;font-size:.98rem}
+  .reservado-por{font-size:.85rem;color:var(--texto-suave);text-align:center}
+
+  .vacio{
+    grid-column:1/-1;text-align:center;padding:60px 20px;
+    color:var(--texto-suave);background:#fff;border:1px dashed var(--borde);border-radius:var(--radio);
+  }
+
+  /* ---------- MODALES ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(74,35,54,.45);
+    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
+    overflow-y:auto;
+  }
+  .overlay.abierto{display:flex}
+  .modal{
+    background:#fff;border-radius:var(--radio);padding:30px;
+    width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.25);
+    animation:subir .25s ease;
+    max-height:92vh;overflow-y:auto;
+  }
+  .modal.ancho{max-width:760px}
+  @keyframes subir{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .modal h3{font-size:1.4rem;margin-bottom:6px;color:var(--rosa-oscuro)}
+  .modal .sub{color:var(--texto-suave);font-size:.95rem;margin-bottom:18px}
+  label{display:block;font-weight:600;font-size:.9rem;margin:14px 0 6px;color:var(--texto)}
+  input,textarea,select{
+    width:100%;padding:13px 14px;border:1px solid var(--borde);border-radius:12px;
+    font:inherit;color:var(--texto);background:var(--rosa-fondo);
+  }
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--rosa-medio);background:#fff}
+  textarea{resize:vertical;min-height:80px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .modal-acciones{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .modal-acciones .btn{flex:1;min-width:120px}
+  .error{color:#b3261e;font-size:.88rem;margin-top:8px;min-height:1.2em}
+
+  /* panel admin */
+  .admin-barra{
+    background:var(--rosa-medio);color:#fff;text-align:center;padding:10px;
+    font-weight:600;display:none;
+  }
+  body.admin .admin-barra{display:block}
+  .admin-barra button{margin-left:12px;background:#fff;color:var(--rosa-oscuro);padding:4px 14px;border-radius:999px;font-weight:700}
+  .lista-admin{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+  .item-admin{
+    display:flex;align-items:center;gap:12px;background:var(--rosa-fondo);
+    border:1px solid var(--borde);border-radius:14px;padding:10px 12px;
+  }
+  .item-admin .mini{width:46px;height:46px;border-radius:10px;background:var(--rosa-suave);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+  .item-admin .mini img{width:100%;height:100%;object-fit:cover}
+  .item-admin .t{flex:1;min-width:0}
+  .item-admin .t b{display:block;text-transform:uppercase;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item-admin .t small{color:var(--texto-suave)}
+  .item-admin button{padding:8px 12px;border-radius:10px;font-weight:700;font-size:.85rem}
+  .sep{border:none;border-top:1px solid var(--borde);margin:20px 0}
+
+  /* toast */
+  .toast{
+    position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(30px);
+    background:var(--rosa-oscuro);color:#fff;padding:14px 24px;border-radius:999px;
+    font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:100;
+    box-shadow:var(--sombra);max-width:90vw;text-align:center;
+  }
+  .toast.ver{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  footer{text-align:center;color:var(--texto-suave);font-size:.9rem;padding:0 20px 40px}
+
+  @media(max-width:600px){
+    .hero{padding:44px 16px 40px}
+    .contenedor{padding:36px 16px 60px}
+    .acciones{width:100%}
+    .acciones .btn{flex:1}
+    .fila{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="admin-barra">Modo administrador activo <button id="salirAdmin">Salir</button></div>
+
+<header class="hero">
+  <h1 id="tituloPagina">Los deseos de Lili 🎀</h1>
+  <div class="fecha" id="fechaPagina">14 de noviembre de 2026</div>
+  <p id="mensajePagina">¡Se acerca mi cumpleaños! 💕 Preparé esta pequeña lista con cosas que me encantaría recibir. Gracias por ser parte de mi día especial.</p>
+</header>
+
+<main class="contenedor">
+  <div class="barra">
+    <div>
+      <h2>Mi lista de deseos 🎁</h2>
+      <p>Elige un detalle y ayúdame a evitar regalos repetidos.</p>
+    </div>
+    <div class="acciones">
+      <button class="btn btn-suave" id="btnCompartir">Compartir 💌</button>
+      <button class="btn btn-fuerte" id="btnAdministrar">⚙ Administrar</button>
+    </div>
+  </div>
+
+  <div class="filtros" id="filtros">
+    <button class="chip activo" data-filtro="todos">Todos</button>
+    <button class="chip" data-filtro="disponible">Disponibles</button>
+    <button class="chip" data-filtro="reservado">Reservados</button>
+  </div>
+
+  <section class="grid" id="grid"></section>
+</main>
+
+<footer>Hecho con 💕 para mi cumpleaños</footer>
+
+<!-- MODAL: RESERVAR -->
+<div class="overlay" id="modalReservar">
+  <div class="modal">
+    <h3>Quiero regalarlo 💝</h3>
+    <p class="sub" id="reservarSub"></p>
+    <label for="reservarNombre">Tu nombre</label>
+    <input id="reservarNombre" type="text" placeholder="¿Quién eres?" maxlength="40">
+    <div class="error" id="reservarError"></div>
+    <div class="modal-acciones">
+      <button class="btn btn-suave" data-cerrar>Cancelar</button>
+      <button class="btn btn-fuerte" id="confirmarReserva">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: COMPARTIR -->
+<div class="overlay" id="modalCompartir">
+  <div class="modal">
+    <h3>Compartir mi lista 💌</h3>
+    <p class="sub">Envía este enlace a tus amigos y familia.</p>
+    <input id="enlaceCompartir" type="text" readonly>
+    <div class="modal-acciones">
+      <button class="btn btn-suave" id="copiarEnlace">Copiar enlace</button>
+      <button class="btn btn-fuerte" id="whatsapp">WhatsApp</button>
+    </div>
+    <div class="modal-acciones" style="margin-top:10px">
+      <button class="btn btn-suave" data-cerrar>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: LOGIN ADMIN -->
+<div class="overlay" id="modalLogin">
+  <div class="modal">
+    <h3>⚙ Administrar</h3>
+    <p class="sub">Ingresa tu contraseña para editar la lista. <br><small>(Contraseña inicial: <b>lili2026</b>)</small></p>
+    <label for="loginPass">Contraseña</label>
+    <input id="loginPass" type="password" placeholder="••••••••">
+    <div class="error" id="loginError"></div>
+    <div class="modal-acciones">
+      <button class="btn btn-suave" data-cerrar>Cancelar</button>
+      <button class="btn btn-fuerte" id="confirmarLogin">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PANEL ADMIN -->
+<div class="overlay" id="modalAdmin">
+  <div class="modal ancho">
+    <h3>Panel de administración</h3>
+    <p class="sub">Agrega, edita o elimina regalos y personaliza tu página.</p>
+
+    <div class="modal-acciones" style="margin-top:0">
+      <button class="btn btn-fuerte" id="nuevoRegalo">＋ Nuevo regalo</button>
+      <button class="btn btn-suave" id="editarPagina">✏️ Editar encabezado</button>
+    </div>
+
+    <div class="lista-admin" id="listaAdmin"></div>
+
+    <hr class="sep">
+    <div class="modal-acciones" style="margin-top:0">
+      <button class="btn btn-suave" id="exportar">⬇ Exportar copia</button>
+      <button class="btn btn-suave" id="importar">⬆ Importar copia</button>
+      <button class="btn btn-suave" id="liberarTodos">Liberar reservas</button>
+      <button class="btn btn-peligro" id="restablecer">Restablecer</button>
+    </div>
+    <input type="file" id="archivoImportar" accept="application/json" hidden>
+
+    <div class="modal-acciones">
+      <button class="btn btn-suave" data-cerrar>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: FORM REGALO -->
+<div class="overlay" id="modalForm">
+  <div class="modal">
+    <h3 id="formTitulo">Nuevo regalo</h3>
+    <form id="formRegalo" autocomplete="off">
+      <label for="fNombre">Nombre del regalo *</label>
+      <input id="fNombre" required maxlength="80">
+
+      <div class="fila">
+        <div>
+          <label for="fPrecio">Precio (COP)</label>
+          <input id="fPrecio" type="number" min="0" step="1" placeholder="Vacío = por consultar">
+        </div>
+        <div>
+          <label for="fTienda">Tienda / Marca</label>
+          <input id="fTienda" maxlength="40">
+        </div>
+      </div>
+
+      <label for="fNota">Detalles (talla, color, etc.)</label>
+      <textarea id="fNota" maxlength="200"></textarea>
+
+      <label for="fImagen">URL de la imagen</label>
+      <input id="fImagen" type="url" placeholder="https://...">
+
+      <label for="fImagenArchivo">…o sube una foto</label>
+      <input id="fImagenArchivo" type="file" accept="image/*">
+
+      <label for="fLink">Enlace donde comprar</label>
+      <input id="fLink" type="url" placeholder="https://...">
+
+      <div class="modal-acciones">
+        <button type="button" class="btn btn-suave" id="cancelarForm">Cancelar</button>
+        <button type="submit" class="btn btn-fuerte">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: ENCABEZADO -->
+<div class="overlay" id="modalHeader">
+  <div class="modal">
+    <h3>Editar encabezado</h3>
+    <label for="hTitulo">Título</label>
+    <input id="hTitulo" maxlength="60">
+    <label for="hFecha">Fecha del cumpleaños</label>
+    <input id="hFecha" type="date">
+    <label for="hMensaje">Mensaje</label>
+    <textarea id="hMensaje" maxlength="300"></textarea>
+    <label for="hPass">Nueva contraseña (opcional)</label>
+    <input id="hPass" type="text" placeholder="Déjalo vacío para no cambiarla">
+    <div class="modal-acciones">
+      <button class="btn btn-suave" data-cerrar>Cancelar</button>
+      <button class="btn btn-fuerte" id="guardarHeader">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  const KEY = "lili_deseos_v1";
+  const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+  const DEFECTO = {
+    config:{
+      titulo:"Los deseos de Lili 🎀",
+      fecha:"2026-11-14",
+      mensaje:"¡Se acerca mi cumpleaños! 💕 Preparé esta pequeña lista con cosas que me encantaría recibir. Gracias por ser parte de mi día especial.",
+      pass:"lili2026"
+    },
+    items:[
+      {id:1,nombre:"Tenis adidas VL Court",precio:null,tienda:"Adidas",nota:"",imagen:"",link:"",reservado:""},
+      {id:2,nombre:"Tenis Runvista cafe",precio:null,tienda:"Adidas",nota:"",imagen:"",link:"",reservado:""},
+      {id:3,nombre:"Camiseta relaxed fit",precio:null,tienda:"",nota:"",imagen:"",link:"",reservado:""},
+      {id:4,nombre:"Chanclas de casa o playa",precio:null,tienda:"",nota:"",imagen:"",link:"",reservado:""},
+      {id:5,nombre:"Maquillaje",precio:70000,tienda:"La de elección",nota:"Puede ser polvo suelto, rubor, brocha para rubor, delineador de labios, pestañina, etc.",imagen:"",link:"",reservado:""},
+      {id:6,nombre:"Cadena de oro",precio:null,tienda:"De elección",nota:"Que sea oro, tengo un dije jajaja.",imagen:"",link:"",reservado:""},
+      {id:7,nombre:"Jeans rectos",precio:135000,tienda:"Rifle",nota:"Talla 10",imagen:"",link:"https://www.rifle.com.co",reservado:""},
+      {id:8,nombre:"Billetera roja",precio:168000,tienda:"Vélez",nota:"Roja - ahora está en promo",imagen:"",link:"https://www.velez.com.co",reservado:""},
+      {id:9,nombre:"Body escote en V entallado",precio:71000,tienda:"Seven y Seven",nota:"Blanco talla M. Precio puede variar",imagen:"",link:"https://www.sevenyseven.com",reservado:""},
+      {id:10,nombre:"Camiseta básica tejido",precio:50000,tienda:"Seven y Seven",nota:"Talla M crudo o blanca",imagen:"",link:"https://www.sevenyseven.com",reservado:""},
+      {id:11,nombre:"Body café",precio:50000,tienda:"Seven y Seven",nota:"Ahora está en promoción",imagen:"",link:"https://www.sevenyseven.com",reservado:""},
+      {id:12,nombre:"Licras deportivas",precio:75001,tienda:"Shein",nota:"Colores que aparecen en la foto",imagen:"",link:"https://www.shein.com.co",reservado:""}
+    ]
+  };
+
+  /* ---------- Estado ---------- */
+  let estado = cargar();
+  let esAdmin = false; // la sesión solo vive mientras el panel está abierto
+  let filtro = "todos";
+  let itemReservando = null;
+  let itemEditando = null;
+  let imagenSubida = "";
+
+  function cargar(){
+    try{
+      const raw = localStorage.getItem(KEY);
+      if(raw){
+        const d = JSON.parse(raw);
+        if(d && d.config && Array.isArray(d.items)) return d;
+      }
+    }catch(e){}
+    return JSON.parse(JSON.stringify(DEFECTO));
+  }
+  function guardar(){
+    try{ localStorage.setItem(KEY, JSON.stringify(estado)); }
+    catch(e){ toast("No se pudo guardar (almacenamiento lleno)"); }
+  }
+
+  /* ---------- Utilidades ---------- */
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  function esc(t){
+    const d = document.createElement("div");
+    d.textContent = t == null ? "" : String(t);
+    return d.innerHTML;
+  }
+  function formatoPrecio(n){
+    return "$ " + Number(n).toLocaleString("es-CO");
+  }
+  function formatoFecha(iso){
+    if(!iso) return "";
+    const [y,m,d] = iso.split("-").map(Number);
+    return d + " de " + MESES[m-1] + " de " + y;
+  }
+  function urlSegura(u){
+    try{
+      const x = new URL(u);
+      return (x.protocol === "http:" || x.protocol === "https:") ? x.href : "";
+    }catch(e){ return ""; }
+  }
+  let toastT;
+  function toast(msg){
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("ver");
+    clearTimeout(toastT);
+    toastT = setTimeout(()=>t.classList.remove("ver"),2600);
+  }
+  function abrir(id){ $(id).classList.add("abierto"); }
+  function cerrar(id){ cerrarOverlay($(id)); }
+  function cerrarTodos(){ $$(".overlay").forEach(o=>cerrarOverlay(o)); }
+  function cerrarOverlay(o){
+    o.classList.remove("abierto");
+    if(o.id === "modalAdmin") terminarSesion(); // cerrar el panel = cerrar sesión
+  }
+  function terminarSesion(){
+    if(!esAdmin) return;
+    esAdmin = false;
+    renderTodo();
+  }
+
+  /* ---------- Render ---------- */
+  function renderHeader(){
+    const c = estado.config;
+    $("#tituloPagina").textContent = c.titulo;
+    $("#fechaPagina").textContent = formatoFecha(c.fecha);
+    $("#mensajePagina").textContent = c.mensaje;
+    document.title = c.titulo.replace(/[^\p{L}\p{N}\s]/gu,"").trim() || "Lista de deseos";
+    document.body.classList.toggle("admin", esAdmin);
+  }
+
+  function renderGrid(){
+    const grid = $("#grid");
+    const items = estado.items.filter(i=>{
+      if(filtro === "disponible") return !i.reservado;
+      if(filtro === "reservado") return !!i.reservado;
+      return true;
+    });
+    if(!items.length){
+      grid.innerHTML = '<div class="vacio">No hay regalos en esta sección todavía 💕</div>';
+      return;
+    }
+    grid.innerHTML = items.map(i=>{
+      const img = urlOk(i.imagen)
+        ? `<img src="${esc(i.imagen)}" alt="${esc(i.nombre)}" loading="lazy" onerror="this.parentNode.innerHTML='🎁'">`
+        : "🎁";
+      const precio = i.precio != null && i.precio !== ""
+        ? `<div class="precio">${formatoPrecio(i.precio)}</div>`
+        : `<div class="precio consultar">Precio por consultar</div>`;
+      const link = urlSegura(i.link);
+      const res = !!i.reservado;
+      return `
+      <article class="card ${res?"reservado":""}" data-id="${i.id}">
+        <div class="imagen">${img}</div>
+        <div class="info">
+          <span class="estado ${res?"res":""}">${res?"💝 Reservado":"✨ Disponible"}</span>
+          <h3>${esc(i.nombre)}</h3>
+          ${precio}
+          ${i.tienda?`<div class="tienda">🏬 ${esc(i.tienda)}</div>`:""}
+          ${i.nota?`<div class="nota">${esc(i.nota)}</div>`:""}
+          <div class="botones">
+            ${link?`<a class="btn btn-fuerte btn-block" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Ver dónde comprar ↗</a>`:""}
+            ${res
+              ? (esAdmin
+                  ? `<button class="btn btn-suave" data-accion="liberar" data-id="${i.id}">Liberar reserva</button>`
+                  : `<div class="reservado-por">Ya tiene quien lo regale 💕</div>`)
+              : `<button class="btn btn-suave" data-accion="reservar" data-id="${i.id}">💝 Quiero regalarlo</button>`}
+            ${esAdmin && res ? `<div class="reservado-por">Reservado por: <b>${esc(i.reservado)}</b></div>` : ""}
+          </div>
+        </div>
+      </article>`;
+    }).join("");
+  }
+  function urlOk(u){
+    if(!u) return false;
+    return /^data:image\//.test(u) || !!urlSegura(u);
+  }
+
+  function renderAdmin(){
+    const l = $("#listaAdmin");
+    if(!estado.items.length){
+      l.innerHTML = '<div class="vacio">Aún no hay regalos. ¡Agrega el primero!</div>';
+      return;
+    }
+    l.innerHTML = estado.items.map(i=>`
+      <div class="item-admin">
+        <div class="mini">${urlOk(i.imagen)?`<img src="${esc(i.imagen)}" alt="" onerror="this.parentNode.innerHTML='🎁'">`:"🎁"}</div>
+        <div class="t"><b>${esc(i.nombre)}</b><small>${i.precio!=null&&i.precio!==""?formatoPrecio(i.precio):"Por consultar"}${i.reservado?" · Reservado por "+esc(i.reservado):""}</small></div>
+        <button class="btn-suave" data-adm="editar" data-id="${i.id}">Editar</button>
+        <button class="btn-peligro" data-adm="borrar" data-id="${i.id}">Borrar</button>
+      </div>`).join("");
+  }
+
+  function renderTodo(){ renderHeader(); renderGrid(); renderAdmin(); }
+
+  /* ---------- Eventos globales ---------- */
+  document.addEventListener("click", e=>{
+    if(e.target.matches("[data-cerrar]")){ cerrarOverlay(e.target.closest(".overlay")); }
+    if(e.target.classList.contains("overlay") && e.target.id !== "modalForm"){ cerrarOverlay(e.target); }
+  });
+  document.addEventListener("keydown", e=>{ if(e.key === "Escape") cerrarTodos(); });
+
+  /* Filtros */
+  $("#filtros").addEventListener("click", e=>{
+    const b = e.target.closest(".chip"); if(!b) return;
+    filtro = b.dataset.filtro;
+    $$(".chip").forEach(c=>c.classList.toggle("activo", c===b));
+    renderGrid();
+  });
+
+  /* Tarjetas: reservar / liberar */
+  $("#grid").addEventListener("click", e=>{
+    const b = e.target.closest("[data-accion]"); if(!b) return;
+    const id = Number(b.dataset.id);
+    const item = estado.items.find(i=>i.id===id); if(!item) return;
+    if(b.dataset.accion === "reservar"){
+      itemReservando = item;
+      $("#reservarSub").textContent = "Vas a reservar: " + item.nombre;
+      $("#reservarNombre").value = "";
+      $("#reservarError").textContent = "";
+      abrir("#modalReservar");
+      setTimeout(()=>$("#reservarNombre").focus(),50);
+    } else if(b.dataset.accion === "liberar"){
+      item.reservado = "";
+      guardar(); renderTodo(); toast("Reserva liberada");
+    }
+  });
+
+  $("#confirmarReserva").addEventListener("click", ()=>{
+    const nombre = $("#reservarNombre").value.trim();
+    if(!nombre){ $("#reservarError").textContent = "Escribe tu nombre para continuar."; return; }
+    const item = estado.items.find(i=>i.id===itemReservando.id);
+    if(item.reservado){ toast("Ups, alguien ya lo reservó"); cerrar("#modalReservar"); renderGrid(); return; }
+    item.reservado = nombre;
+    guardar(); cerrar("#modalReservar"); renderTodo();
+    toast("¡Gracias, " + nombre + "! Regalo reservado 💝");
+  });
+  $("#reservarNombre").addEventListener("keydown", e=>{ if(e.key==="Enter") $("#confirmarReserva").click(); });
+
+  /* Compartir */
+  $("#btnCompartir").addEventListener("click", async ()=>{
+    const url = location.href.split("#")[0];
+    const data = {title:estado.config.titulo, text:"Mira mi lista de deseos 🎁", url};
+    if(navigator.share && /Mobi|Android/i.test(navigator.userAgent)){
+      try{ await navigator.share(data); return; }catch(e){ if(e.name==="AbortError") return; }
+    }
+    $("#enlaceCompartir").value = url;
+    abrir("#modalCompartir");
+  });
+  $("#copiarEnlace").addEventListener("click", async ()=>{
+    const inp = $("#enlaceCompartir");
+    try{ await navigator.clipboard.writeText(inp.value); }
+    catch(e){ inp.select(); document.execCommand("copy"); }
+    toast("Enlace copiado 💌");
+  });
+  $("#whatsapp").addEventListener("click", ()=>{
+    const txt = encodeURIComponent("¡Mira mi lista de deseos para mi cumpleaños! 🎁💕 " + $("#enlaceCompartir").value);
+    window.open("https://wa.me/?text=" + txt, "_blank", "noopener");
+  });
+
+  /* Administrar */
+  $("#btnAdministrar").addEventListener("click", ()=>{
+    if(esAdmin){ renderAdmin(); abrir("#modalAdmin"); return; }
+    $("#loginPass").value = ""; $("#loginError").textContent = "";
+    abrir("#modalLogin");
+    setTimeout(()=>$("#loginPass").focus(),50);
+  });
+  $("#confirmarLogin").addEventListener("click", ()=>{
+    if($("#loginPass").value === estado.config.pass){
+      esAdmin = true;
+      cerrar("#modalLogin"); renderTodo(); abrir("#modalAdmin");
+      toast("Modo administrador activado ⚙");
+    } else {
+      $("#loginError").textContent = "Contraseña incorrecta.";
+    }
+  });
+  $("#loginPass").addEventListener("keydown", e=>{ if(e.key==="Enter") $("#confirmarLogin").click(); });
+  $("#salirAdmin").addEventListener("click", ()=>{
+    cerrarTodos(); terminarSesion(); toast("Saliste del modo administrador");
+  });
+
+  /* Lista admin */
+  $("#listaAdmin").addEventListener("click", e=>{
+    const b = e.target.closest("[data-adm]"); if(!b) return;
+    const id = Number(b.dataset.id);
+    if(b.dataset.adm === "editar") abrirForm(estado.items.find(i=>i.id===id));
+    if(b.dataset.adm === "borrar"){
+      const it = estado.items.find(i=>i.id===id);
+      if(confirm("¿Borrar \"" + it.nombre + "\"?")){
+        estado.items = estado.items.filter(i=>i.id!==id);
+        guardar(); renderTodo(); toast("Regalo eliminado");
+      }
+    }
+  });
+  $("#nuevoRegalo").addEventListener("click", ()=>abrirForm(null));
+
+  /* Formulario de regalo */
+  function abrirForm(item){
+    itemEditando = item;
+    imagenSubida = "";
+    $("#formTitulo").textContent = item ? "Editar regalo" : "Nuevo regalo";
+    $("#fNombre").value = item ? item.nombre : "";
+    $("#fPrecio").value = item && item.precio != null ? item.precio : "";
+    $("#fTienda").value = item ? item.tienda : "";
+    $("#fNota").value = item ? item.nota : "";
+    $("#fImagen").value = item && !/^data:/.test(item.imagen||"") ? (item.imagen||"") : "";
+    $("#fLink").value = item ? item.link : "";
+    $("#fImagenArchivo").value = "";
+    if(item && /^data:/.test(item.imagen||"")) imagenSubida = item.imagen;
+    abrir("#modalForm");
+  }
+  $("#cancelarForm").addEventListener("click", ()=>cerrar("#modalForm"));
+
+  $("#fImagenArchivo").addEventListener("change", e=>{
+    const f = e.target.files[0]; if(!f) return;
+    const r = new FileReader();
+    r.onload = ev=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const max = 700;
+        const esc_ = Math.min(1, max/Math.max(img.width,img.height));
+        const c = document.createElement("canvas");
+        c.width = Math.round(img.width*esc_); c.height = Math.round(img.height*esc_);
+        c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+        imagenSubida = c.toDataURL("image/jpeg",.8);
+        toast("Foto cargada ✔");
+      };
+      img.src = ev.target.result;
+    };
+    r.readAsDataURL(f);
+  });
+
+  $("#formRegalo").addEventListener("submit", e=>{
+    e.preventDefault();
+    const precioTxt = $("#fPrecio").value.trim();
+    const urlImg = $("#fImagen").value.trim();
+    const datos = {
+      nombre: $("#fNombre").value.trim(),
+      precio: precioTxt === "" ? null : Number(precioTxt),
+      tienda: $("#fTienda").value.trim(),
+      nota: $("#fNota").value.trim(),
+      imagen: imagenSubida || (urlImg ? urlSegura(urlImg) : ""),
+      link: urlSegura($("#fLink").value.trim())
+    };
+    if(!datos.nombre) return;
+    if(itemEditando){
+      Object.assign(estado.items.find(i=>i.id===itemEditando.id), datos);
+      toast("Regalo actualizado ✔");
+    } else {
+      const nuevoId = estado.items.reduce((m,i)=>Math.max(m,i.id),0) + 1;
+      estado.items.push(Object.assign({id:nuevoId, reservado:""}, datos));
+      toast("Regalo agregado 🎁");
+    }
+    guardar(); cerrar("#modalForm"); renderTodo();
+  });
+
+  /* Encabezado */
+  $("#editarPagina").addEventListener("click", ()=>{
+    const c = estado.config;
+    $("#hTitulo").value = c.titulo;
+    $("#hFecha").value = c.fecha;
+    $("#hMensaje").value = c.mensaje;
+    $("#hPass").value = "";
+    abrir("#modalHeader");
+  });
+  $("#guardarHeader").addEventListener("click", ()=>{
+    const c = estado.config;
+    c.titulo = $("#hTitulo").value.trim() || c.titulo;
+    c.fecha = $("#hFecha").value || c.fecha;
+    c.mensaje = $("#hMensaje").value.trim() || c.mensaje;
+    const p = $("#hPass").value.trim();
+    if(p) c.pass = p;
+    guardar(); cerrar("#modalHeader"); renderTodo(); toast("Encabezado actualizado ✔");
+  });
+
+  /* Herramientas admin */
+  $("#liberarTodos").addEventListener("click", ()=>{
+    if(confirm("¿Liberar todas las reservas?")){
+      estado.items.forEach(i=>i.reservado="");
+      guardar(); renderTodo(); toast("Todas las reservas liberadas");
+    }
+  });
+  $("#restablecer").addEventListener("click", ()=>{
+    if(confirm("Esto borrará tus cambios y volverá a la lista inicial. ¿Continuar?")){
+      estado = JSON.parse(JSON.stringify(DEFECTO));
+      guardar(); renderTodo(); toast("Lista restablecida");
+    }
+  });
+  $("#exportar").addEventListener("click", ()=>{
+    const blob = new Blob([JSON.stringify(estado,null,2)],{type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "lista-deseos-lili.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast("Copia exportada ⬇");
+  });
+  $("#importar").addEventListener("click", ()=>$("#archivoImportar").click());
+  $("#archivoImportar").addEventListener("change", e=>{
+    const f = e.target.files[0]; if(!f) return;
+    const r = new FileReader();
+    r.onload = ev=>{
+      try{
+        const d = JSON.parse(ev.target.result);
+        if(!d.config || !Array.isArray(d.items)) throw 0;
+        estado = d; guardar(); renderTodo(); toast("Copia importada ✔");
+      }catch(err){ toast("Archivo no válido"); }
+    };
+    r.readAsText(f);
+    e.target.value = "";
+  });
+
+  renderTodo();
+})();
+</script>
+</body>
+</html>
