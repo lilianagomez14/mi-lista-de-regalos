@@ -16,7 +16,6 @@
     --texto:#4a2336;
     --texto-suave:#7a5568;
     --borde:#f4d9e3;
-    --ok:#2e8b57;
     --warn:#c0762a;
     --radio:24px;
     --sombra:0 8px 24px rgba(164,82,111,.10);
@@ -33,7 +32,6 @@
   button{font-family:inherit;cursor:pointer;border:none}
   a{color:inherit;text-decoration:none}
 
-  /* ---------- HERO ---------- */
   .hero{
     background:linear-gradient(135deg,#fbd9e5 0%,#fde8ef 55%,#fff1f5 100%);
     border-bottom:1px solid var(--borde);
@@ -48,45 +46,21 @@
     margin-bottom:26px;
   }
   .fecha{
-    display:inline-block;
-    background:#fff;
-    color:var(--rosa-medio);
-    font-weight:700;
-    padding:14px 28px;
-    border-radius:999px;
-    box-shadow:var(--sombra);
-    margin-bottom:26px;
+    display:inline-block;background:#fff;color:var(--rosa-medio);font-weight:700;
+    padding:14px 28px;border-radius:999px;box-shadow:var(--sombra);margin-bottom:26px;
   }
-  .hero p{
-    max-width:700px;
-    margin:0 auto;
-    color:var(--texto-suave);
-    font-size:1.05rem;
-  }
+  .hero p{max-width:700px;margin:0 auto;color:var(--texto-suave);font-size:1.05rem}
 
-  /* ---------- CONTENEDOR ---------- */
   .contenedor{max-width:1320px;margin:0 auto;padding:56px 24px 80px}
-  .barra{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:16px;
-    margin-bottom:28px;
-  }
+  .barra{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:28px}
   .barra h2{font-size:1.9rem;color:var(--texto)}
   .barra p{color:var(--texto-suave);font-size:.95rem;margin-top:14px}
   .acciones{display:flex;gap:12px;flex-wrap:wrap}
 
-  .btn{
-    padding:16px 22px;
-    border-radius:16px;
-    font-weight:700;
-    font-size:1rem;
-    transition:transform .15s,box-shadow .15s,background .15s;
-  }
+  .btn{padding:16px 22px;border-radius:16px;font-weight:700;font-size:1rem;transition:transform .15s,box-shadow .15s,background .15s}
   .btn:hover{transform:translateY(-2px);box-shadow:var(--sombra)}
   .btn:active{transform:translateY(0)}
+  .btn:disabled{opacity:.6;cursor:wait;transform:none}
   .btn-suave{background:var(--rosa-claro);color:var(--rosa-oscuro)}
   .btn-suave:hover{background:#f3cfde}
   .btn-fuerte{background:var(--rosa-medio);color:#fff}
@@ -94,53 +68,28 @@
   .btn-peligro{background:#fde2e2;color:#b3261e}
   .btn-block{display:block;width:100%;text-align:center}
 
-  /* ---------- FILTROS ---------- */
   .filtros{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
-  .chip{
-    background:#fff;border:1px solid var(--borde);color:var(--rosa-oscuro);
-    padding:8px 16px;border-radius:999px;font-weight:600;font-size:.9rem;
-  }
+  .chip{background:#fff;border:1px solid var(--borde);color:var(--rosa-oscuro);padding:8px 16px;border-radius:999px;font-weight:600;font-size:.9rem}
   .chip.activo{background:var(--rosa-medio);color:#fff;border-color:var(--rosa-medio)}
 
-  /* ---------- GRID DE TARJETAS ---------- */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:26px;
-    align-items:start;
-  }
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;align-items:start}
   .card{
-    background:#fff;
-    border:1px solid var(--borde);
-    border-radius:var(--radio);
-    overflow:hidden;
-    box-shadow:var(--sombra);
-    transition:transform .2s;
-    display:flex;flex-direction:column;
+    background:#fff;border:1px solid var(--borde);border-radius:var(--radio);overflow:hidden;
+    box-shadow:var(--sombra);transition:transform .2s;display:flex;flex-direction:column;
   }
   .card:hover{transform:translateY(-4px)}
   .card.reservado{opacity:.85}
   .imagen{
-    height:270px;
-    background:var(--rosa-suave);
-    display:flex;align-items:center;justify-content:center;
-    font-size:4rem;
-    overflow:hidden;
-    position:relative;
+    height:270px;background:var(--rosa-suave);display:flex;align-items:center;justify-content:center;
+    font-size:4rem;overflow:hidden;position:relative;
   }
   .imagen img{width:100%;height:100%;object-fit:cover;display:block}
   .card.reservado .imagen::after{
-    content:"Reservado 💝";
-    position:absolute;inset:auto 12px 12px auto;
-    background:rgba(142,66,104,.92);color:#fff;
-    padding:6px 14px;border-radius:999px;font-weight:700;font-size:.85rem;
+    content:"Reservado 💝";position:absolute;inset:auto 12px 12px auto;
+    background:rgba(142,66,104,.92);color:#fff;padding:6px 14px;border-radius:999px;font-weight:700;font-size:.85rem;
   }
   .info{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
-  .estado{
-    align-self:flex-start;
-    font-size:.88rem;padding:7px 14px;border-radius:999px;
-    background:var(--rosa-suave);color:var(--texto);
-  }
+  .estado{align-self:flex-start;font-size:.88rem;padding:7px 14px;border-radius:999px;background:var(--rosa-suave);color:var(--texto)}
   .estado.res{background:#fff0d9;color:var(--warn)}
   .info h3{font-size:1.35rem;text-transform:uppercase;line-height:1.25;word-break:break-word}
   .precio{font-size:1.5rem;font-weight:800;color:var(--rosa-medio)}
@@ -151,23 +100,21 @@
   .botones .btn{padding:15px 12px;font-size:.98rem}
   .reservado-por{font-size:.85rem;color:var(--texto-suave);text-align:center}
 
-  .vacio{
-    grid-column:1/-1;text-align:center;padding:60px 20px;
-    color:var(--texto-suave);background:#fff;border:1px dashed var(--borde);border-radius:var(--radio);
-  }
+  .vacio{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--texto-suave);background:#fff;border:1px dashed var(--borde);border-radius:var(--radio)}
 
-  /* ---------- MODALES ---------- */
+  .aviso-config{
+    background:#fff0d9;color:#7a4a10;text-align:center;padding:12px 16px;font-weight:600;font-size:.92rem;display:none;
+  }
+  .aviso-config.ver{display:block}
+
   .overlay{
-    position:fixed;inset:0;background:rgba(74,35,54,.45);
-    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;
-    overflow-y:auto;
+    position:fixed;inset:0;background:rgba(74,35,54,.45);display:none;align-items:center;justify-content:center;
+    padding:20px;z-index:50;overflow-y:auto;
   }
   .overlay.abierto{display:flex}
   .modal{
-    background:#fff;border-radius:var(--radio);padding:30px;
-    width:100%;max-width:520px;box-shadow:0 20px 60px rgba(0,0,0,.25);
-    animation:subir .25s ease;
-    max-height:92vh;overflow-y:auto;
+    background:#fff;border-radius:var(--radio);padding:30px;width:100%;max-width:520px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);animation:subir .25s ease;max-height:92vh;overflow-y:auto;
   }
   .modal.ancho{max-width:760px}
   @keyframes subir{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
@@ -185,18 +132,11 @@
   .modal-acciones .btn{flex:1;min-width:120px}
   .error{color:#b3261e;font-size:.88rem;margin-top:8px;min-height:1.2em}
 
-  /* panel admin */
-  .admin-barra{
-    background:var(--rosa-medio);color:#fff;text-align:center;padding:10px;
-    font-weight:600;display:none;
-  }
+  .admin-barra{background:var(--rosa-medio);color:#fff;text-align:center;padding:10px;font-weight:600;display:none}
   body.admin .admin-barra{display:block}
   .admin-barra button{margin-left:12px;background:#fff;color:var(--rosa-oscuro);padding:4px 14px;border-radius:999px;font-weight:700}
   .lista-admin{display:flex;flex-direction:column;gap:10px;margin:16px 0}
-  .item-admin{
-    display:flex;align-items:center;gap:12px;background:var(--rosa-fondo);
-    border:1px solid var(--borde);border-radius:14px;padding:10px 12px;
-  }
+  .item-admin{display:flex;align-items:center;gap:12px;background:var(--rosa-fondo);border:1px solid var(--borde);border-radius:14px;padding:10px 12px}
   .item-admin .mini{width:46px;height:46px;border-radius:10px;background:var(--rosa-suave);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
   .item-admin .mini img{width:100%;height:100%;object-fit:cover}
   .item-admin .t{flex:1;min-width:0}
@@ -205,12 +145,10 @@
   .item-admin button{padding:8px 12px;border-radius:10px;font-weight:700;font-size:.85rem}
   .sep{border:none;border-top:1px solid var(--borde);margin:20px 0}
 
-  /* toast */
   .toast{
     position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(30px);
-    background:var(--rosa-oscuro);color:#fff;padding:14px 24px;border-radius:999px;
-    font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:100;
-    box-shadow:var(--sombra);max-width:90vw;text-align:center;
+    background:var(--rosa-oscuro);color:#fff;padding:14px 24px;border-radius:999px;font-weight:600;
+    opacity:0;pointer-events:none;transition:.3s;z-index:100;box-shadow:var(--sombra);max-width:90vw;text-align:center;
   }
   .toast.ver{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -227,6 +165,7 @@
 </head>
 <body>
 
+<div class="aviso-config" id="avisoConfig">⚠ Falta conectar Firebase: por ahora ves la lista de ejemplo y no se guardan cambios ni reservas.</div>
 <div class="admin-barra">Modo administrador activo <button id="salirAdmin">Salir</button></div>
 
 <header class="hero">
@@ -253,7 +192,7 @@
     <button class="chip" data-filtro="reservado">Reservados</button>
   </div>
 
-  <section class="grid" id="grid"></section>
+  <section class="grid" id="grid"><div class="vacio">Cargando lista… 🎀</div></section>
 </main>
 
 <footer>Hecho con 💕 para mi cumpleaños</footer>
@@ -293,9 +232,11 @@
 <div class="overlay" id="modalLogin">
   <div class="modal">
     <h3>⚙ Administrar</h3>
-    <p class="sub">Ingresa tu contraseña para editar la lista. <br><small>(Contraseña inicial: <b>lili2026</b>)</small></p>
+    <p class="sub">Entra con el correo y la contraseña de administrador.</p>
+    <label for="loginEmail">Correo</label>
+    <input id="loginEmail" type="email" autocomplete="username" placeholder="tucorreo@gmail.com">
     <label for="loginPass">Contraseña</label>
-    <input id="loginPass" type="password" placeholder="••••••••">
+    <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••">
     <div class="error" id="loginError"></div>
     <div class="modal-acciones">
       <button class="btn btn-suave" data-cerrar>Cancelar</button>
@@ -319,15 +260,12 @@
 
     <hr class="sep">
     <div class="modal-acciones" style="margin-top:0">
-      <button class="btn btn-suave" id="exportar">⬇ Exportar copia</button>
-      <button class="btn btn-suave" id="importar">⬆ Importar copia</button>
+      <button class="btn btn-suave" id="cargarInicial">Cargar lista inicial</button>
       <button class="btn btn-suave" id="liberarTodos">Liberar reservas</button>
-      <button class="btn btn-peligro" id="restablecer">Restablecer</button>
     </div>
-    <input type="file" id="archivoImportar" accept="application/json" hidden>
 
     <div class="modal-acciones">
-      <button class="btn btn-suave" data-cerrar>Cerrar</button>
+      <button class="btn btn-suave" data-cerrar>Cerrar y salir</button>
     </div>
   </div>
 </div>
@@ -365,7 +303,7 @@
 
       <div class="modal-acciones">
         <button type="button" class="btn btn-suave" id="cancelarForm">Cancelar</button>
-        <button type="submit" class="btn btn-fuerte">Guardar</button>
+        <button type="submit" class="btn btn-fuerte" id="guardarRegalo">Guardar</button>
       </div>
     </form>
   </div>
@@ -381,8 +319,6 @@
     <input id="hFecha" type="date">
     <label for="hMensaje">Mensaje</label>
     <textarea id="hMensaje" maxlength="300"></textarea>
-    <label for="hPass">Nueva contraseña (opcional)</label>
-    <input id="hPass" type="text" placeholder="Déjalo vacío para no cambiarla">
     <div class="modal-acciones">
       <button class="btn btn-suave" data-cerrar>Cancelar</button>
       <button class="btn btn-fuerte" id="guardarHeader">Guardar</button>
@@ -392,395 +328,417 @@
 
 <div class="toast" id="toast"></div>
 
-<script>
-(function(){
-  "use strict";
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, collection, doc, onSnapshot, setDoc, addDoc, updateDoc, deleteDoc,
+  runTransaction, writeBatch
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getAuth, setPersistence, inMemoryPersistence, signInWithEmailAndPassword, signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  const KEY = "lili_deseos_v1";
-  const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+/* ============================================================
+   1) PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
+   (Firebase Console → Configuración del proyecto → Tus apps → Web)
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyD702iGwKqjs81EQoJC7NAxxYxM2QMlYVI",
+  authDomain: "mi-lista-de-deseos-68aae.firebaseapp.com",
+  projectId: "mi-lista-de-deseos-68aae",
+  storageBucket: "mi-lista-de-deseos-68aae.firebasestorage.app",
+  messagingSenderId: "56862790251",
+  appId: "1:56862790251:web:6f6e5d202edc6f5196d72e",
+  measurementId: "G-6Y7YP602X7"
+};
+/* ============================================================ */
 
-  const DEFECTO = {
-    config:{
-      titulo:"Los deseos de Lili 🎀",
-      fecha:"2026-11-14",
-      mensaje:"¡Se acerca mi cumpleaños! 💕 Preparé esta pequeña lista con cosas que me encantaría recibir. Gracias por ser parte de mi día especial.",
-      pass:"lili2026"
-    },
-    items:[
-      {id:1,nombre:"Tenis adidas VL Court",precio:null,tienda:"Adidas",nota:"",imagen:"",link:"",reservado:""},
-      {id:2,nombre:"Tenis Runvista cafe",precio:null,tienda:"Adidas",nota:"",imagen:"",link:"",reservado:""},
-      {id:3,nombre:"Camiseta relaxed fit",precio:null,tienda:"",nota:"",imagen:"",link:"",reservado:""},
-      {id:4,nombre:"Chanclas de casa o playa",precio:null,tienda:"",nota:"",imagen:"",link:"",reservado:""},
-      {id:5,nombre:"Maquillaje",precio:70000,tienda:"La de elección",nota:"Puede ser polvo suelto, rubor, brocha para rubor, delineador de labios, pestañina, etc.",imagen:"",link:"",reservado:""},
-      {id:6,nombre:"Cadena de oro",precio:null,tienda:"De elección",nota:"Que sea oro, tengo un dije jajaja.",imagen:"",link:"",reservado:""},
-      {id:7,nombre:"Jeans rectos",precio:135000,tienda:"Rifle",nota:"Talla 10",imagen:"",link:"https://www.rifle.com.co",reservado:""},
-      {id:8,nombre:"Billetera roja",precio:168000,tienda:"Vélez",nota:"Roja - ahora está en promo",imagen:"",link:"https://www.velez.com.co",reservado:""},
-      {id:9,nombre:"Body escote en V entallado",precio:71000,tienda:"Seven y Seven",nota:"Blanco talla M. Precio puede variar",imagen:"",link:"https://www.sevenyseven.com",reservado:""},
-      {id:10,nombre:"Camiseta básica tejido",precio:50000,tienda:"Seven y Seven",nota:"Talla M crudo o blanca",imagen:"",link:"https://www.sevenyseven.com",reservado:""},
-      {id:11,nombre:"Body café",precio:50000,tienda:"Seven y Seven",nota:"Ahora está en promoción",imagen:"",link:"https://www.sevenyseven.com",reservado:""},
-      {id:12,nombre:"Licras deportivas",precio:75001,tienda:"Shein",nota:"Colores que aparecen en la foto",imagen:"",link:"https://www.shein.com.co",reservado:""}
-    ]
-  };
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
-  /* ---------- Estado ---------- */
-  let estado = cargar();
-  let esAdmin = false; // la sesión solo vive mientras el panel está abierto
-  let filtro = "todos";
-  let itemReservando = null;
-  let itemEditando = null;
-  let imagenSubida = "";
+const CONFIG_DEFECTO = {
+  titulo:"Los deseos de Lili 🎀",
+  fecha:"2026-11-14",
+  mensaje:"¡Se acerca mi cumpleaños! 💕 Preparé esta pequeña lista con cosas que me encantaría recibir. Gracias por ser parte de mi día especial."
+};
+const ITEMS_DEFECTO = [
+  {nombre:"Tenis adidas VL Court",precio:null,tienda:"Adidas",nota:"",imagen:"",link:""},
+  {nombre:"Tenis Runvista cafe",precio:null,tienda:"Adidas",nota:"",imagen:"",link:""},
+  {nombre:"Camiseta relaxed fit",precio:null,tienda:"",nota:"",imagen:"",link:""},
+  {nombre:"Chanclas de casa o playa",precio:null,tienda:"",nota:"",imagen:"",link:""},
+  {nombre:"Maquillaje",precio:70000,tienda:"La de elección",nota:"Puede ser polvo suelto, rubor, brocha para rubor, delineador de labios, pestañina, etc.",imagen:"",link:""},
+  {nombre:"Cadena de oro",precio:null,tienda:"De elección",nota:"Que sea oro, tengo un dije jajaja.",imagen:"",link:""},
+  {nombre:"Jeans rectos",precio:135000,tienda:"Rifle",nota:"Talla 10",imagen:"",link:"https://www.rifle.com.co"},
+  {nombre:"Billetera roja",precio:168000,tienda:"Vélez",nota:"Roja - ahora está en promo",imagen:"",link:"https://www.velez.com.co"},
+  {nombre:"Body escote en V entallado",precio:71000,tienda:"Seven y Seven",nota:"Blanco talla M. Precio puede variar",imagen:"",link:"https://www.sevenyseven.com"},
+  {nombre:"Camiseta básica tejido",precio:50000,tienda:"Seven y Seven",nota:"Talla M crudo o blanca",imagen:"",link:"https://www.sevenyseven.com"},
+  {nombre:"Body café",precio:50000,tienda:"Seven y Seven",nota:"Ahora está en promoción",imagen:"",link:"https://www.sevenyseven.com"},
+  {nombre:"Licras deportivas",precio:75001,tienda:"Shein",nota:"Colores que aparecen en la foto",imagen:"",link:"https://www.shein.com.co"}
+];
 
-  function cargar(){
-    try{
-      const raw = localStorage.getItem(KEY);
-      if(raw){
-        const d = JSON.parse(raw);
-        if(d && d.config && Array.isArray(d.items)) return d;
-      }
-    }catch(e){}
-    return JSON.parse(JSON.stringify(DEFECTO));
-  }
-  function guardar(){
-    try{ localStorage.setItem(KEY, JSON.stringify(estado)); }
-    catch(e){ toast("No se pudo guardar (almacenamiento lleno)"); }
-  }
+/* ---------- Firebase ---------- */
+const configurado = !String(firebaseConfig.apiKey).startsWith("PEGA");
+let db = null, auth = null;
+if(configurado){
+  const app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  auth = getAuth(app);
+}
 
-  /* ---------- Utilidades ---------- */
-  const $ = s => document.querySelector(s);
-  const $$ = s => Array.from(document.querySelectorAll(s));
-  function esc(t){
-    const d = document.createElement("div");
-    d.textContent = t == null ? "" : String(t);
-    return d.innerHTML;
-  }
-  function formatoPrecio(n){
-    return "$ " + Number(n).toLocaleString("es-CO");
-  }
-  function formatoFecha(iso){
-    if(!iso) return "";
-    const [y,m,d] = iso.split("-").map(Number);
-    return d + " de " + MESES[m-1] + " de " + y;
-  }
-  function urlSegura(u){
-    try{
-      const x = new URL(u);
-      return (x.protocol === "http:" || x.protocol === "https:") ? x.href : "";
-    }catch(e){ return ""; }
-  }
-  let toastT;
-  function toast(msg){
-    const t = $("#toast");
-    t.textContent = msg;
-    t.classList.add("ver");
-    clearTimeout(toastT);
-    toastT = setTimeout(()=>t.classList.remove("ver"),2600);
-  }
-  function abrir(id){ $(id).classList.add("abierto"); }
-  function cerrar(id){ cerrarOverlay($(id)); }
-  function cerrarTodos(){ $$(".overlay").forEach(o=>cerrarOverlay(o)); }
-  function cerrarOverlay(o){
-    o.classList.remove("abierto");
-    if(o.id === "modalAdmin") terminarSesion(); // cerrar el panel = cerrar sesión
-  }
-  function terminarSesion(){
-    if(!esAdmin) return;
-    esAdmin = false;
-    renderTodo();
-  }
+/* ---------- Estado ---------- */
+let config = {...CONFIG_DEFECTO};
+let items = configurado ? [] : ITEMS_DEFECTO.map((x,i)=>({...x,id:"d"+i,reservado:"",orden:i}));
+let cargado = !configurado;
+let esAdmin = false;
+let filtro = "todos";
+let itemReservando = null;
+let itemEditando = null;
+let imagenSubida = "";
 
-  /* ---------- Render ---------- */
-  function renderHeader(){
-    const c = estado.config;
-    $("#tituloPagina").textContent = c.titulo;
-    $("#fechaPagina").textContent = formatoFecha(c.fecha);
-    $("#mensajePagina").textContent = c.mensaje;
-    document.title = c.titulo.replace(/[^\p{L}\p{N}\s]/gu,"").trim() || "Lista de deseos";
-    document.body.classList.toggle("admin", esAdmin);
-  }
+/* ---------- Utilidades ---------- */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+function esc(t){ const d=document.createElement("div"); d.textContent = t==null?"":String(t); return d.innerHTML; }
+function formatoPrecio(n){ return "$ " + Number(n).toLocaleString("es-CO"); }
+function formatoFecha(iso){
+  if(!iso) return "";
+  const [y,m,d] = iso.split("-").map(Number);
+  return d + " de " + MESES[m-1] + " de " + y;
+}
+function urlSegura(u){
+  try{ const x=new URL(u); return (x.protocol==="http:"||x.protocol==="https:")?x.href:""; }
+  catch(e){ return ""; }
+}
+function urlOk(u){ return !!u && (/^data:image\//.test(u) || !!urlSegura(u)); }
+let toastT;
+function toast(msg){
+  const t=$("#toast"); t.textContent=msg; t.classList.add("ver");
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("ver"),2800);
+}
+function abrir(id){ $(id).classList.add("abierto"); }
+function cerrar(id){ cerrarOverlay($(id)); }
+function cerrarTodos(){ $$(".overlay").forEach(o=>cerrarOverlay(o)); }
+function cerrarOverlay(o){
+  o.classList.remove("abierto");
+  if(o.id === "modalAdmin") terminarSesion(); // cerrar el panel = cerrar sesión
+}
+function terminarSesion(){
+  if(auth && auth.currentUser) signOut(auth);
+}
+function necesitaConfig(){
+  if(configurado) return false;
+  toast("Primero conecta Firebase en el archivo");
+  return true;
+}
 
-  function renderGrid(){
-    const grid = $("#grid");
-    const items = estado.items.filter(i=>{
-      if(filtro === "disponible") return !i.reservado;
-      if(filtro === "reservado") return !!i.reservado;
-      return true;
-    });
-    if(!items.length){
-      grid.innerHTML = '<div class="vacio">No hay regalos en esta sección todavía 💕</div>';
-      return;
-    }
-    grid.innerHTML = items.map(i=>{
-      const img = urlOk(i.imagen)
-        ? `<img src="${esc(i.imagen)}" alt="${esc(i.nombre)}" loading="lazy" onerror="this.parentNode.innerHTML='🎁'">`
-        : "🎁";
-      const precio = i.precio != null && i.precio !== ""
-        ? `<div class="precio">${formatoPrecio(i.precio)}</div>`
-        : `<div class="precio consultar">Precio por consultar</div>`;
-      const link = urlSegura(i.link);
-      const res = !!i.reservado;
-      return `
-      <article class="card ${res?"reservado":""}" data-id="${i.id}">
-        <div class="imagen">${img}</div>
-        <div class="info">
-          <span class="estado ${res?"res":""}">${res?"💝 Reservado":"✨ Disponible"}</span>
-          <h3>${esc(i.nombre)}</h3>
-          ${precio}
-          ${i.tienda?`<div class="tienda">🏬 ${esc(i.tienda)}</div>`:""}
-          ${i.nota?`<div class="nota">${esc(i.nota)}</div>`:""}
-          <div class="botones">
-            ${link?`<a class="btn btn-fuerte btn-block" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Ver dónde comprar ↗</a>`:""}
-            ${res
-              ? (esAdmin
-                  ? `<button class="btn btn-suave" data-accion="liberar" data-id="${i.id}">Liberar reserva</button>`
-                  : `<div class="reservado-por">Ya tiene quien lo regale 💕</div>`)
-              : `<button class="btn btn-suave" data-accion="reservar" data-id="${i.id}">💝 Quiero regalarlo</button>`}
-            ${esAdmin && res ? `<div class="reservado-por">Reservado por: <b>${esc(i.reservado)}</b></div>` : ""}
-          </div>
+/* ---------- Render ---------- */
+function renderHeader(){
+  $("#tituloPagina").textContent = config.titulo;
+  $("#fechaPagina").textContent = formatoFecha(config.fecha);
+  $("#mensajePagina").textContent = config.mensaje;
+  document.title = config.titulo.replace(/[^\p{L}\p{N}\s]/gu,"").trim() || "Lista de deseos";
+  document.body.classList.toggle("admin", esAdmin);
+  $("#avisoConfig").classList.toggle("ver", !configurado);
+}
+
+function renderGrid(){
+  const grid = $("#grid");
+  if(!cargado){ grid.innerHTML = '<div class="vacio">Cargando lista… 🎀</div>'; return; }
+  const lista = items.filter(i=>{
+    if(filtro==="disponible") return !i.reservado;
+    if(filtro==="reservado") return !!i.reservado;
+    return true;
+  });
+  if(!lista.length){
+    grid.innerHTML = '<div class="vacio">No hay regalos en esta sección todavía 💕</div>';
+    return;
+  }
+  grid.innerHTML = lista.map(i=>{
+    const img = urlOk(i.imagen)
+      ? `<img src="${esc(i.imagen)}" alt="${esc(i.nombre)}" loading="lazy" onerror="this.parentNode.innerHTML='🎁'">`
+      : "🎁";
+    const precio = i.precio!=null && i.precio!==""
+      ? `<div class="precio">${formatoPrecio(i.precio)}</div>`
+      : `<div class="precio consultar">Precio por consultar</div>`;
+    const link = urlSegura(i.link);
+    const res = !!i.reservado;
+    return `
+    <article class="card ${res?"reservado":""}">
+      <div class="imagen">${img}</div>
+      <div class="info">
+        <span class="estado ${res?"res":""}">${res?"💝 Reservado":"✨ Disponible"}</span>
+        <h3>${esc(i.nombre)}</h3>
+        ${precio}
+        ${i.tienda?`<div class="tienda">🏬 ${esc(i.tienda)}</div>`:""}
+        ${i.nota?`<div class="nota">${esc(i.nota)}</div>`:""}
+        <div class="botones">
+          ${link?`<a class="btn btn-fuerte btn-block" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Ver dónde comprar ↗</a>`:""}
+          ${res
+            ? (esAdmin
+                ? `<button class="btn btn-suave" data-accion="liberar" data-id="${esc(i.id)}">Liberar reserva</button>`
+                : `<div class="reservado-por">Ya tiene quien lo regale 💕</div>`)
+            : `<button class="btn btn-suave" data-accion="reservar" data-id="${esc(i.id)}">💝 Quiero regalarlo</button>`}
+          ${esAdmin && res ? `<div class="reservado-por">Reservado por: <b>${esc(i.reservado)}</b></div>` : ""}
         </div>
-      </article>`;
-    }).join("");
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function renderAdmin(){
+  const l = $("#listaAdmin");
+  if(!items.length){
+    l.innerHTML = '<div class="vacio">Aún no hay regalos. Agrega uno o pulsa "Cargar lista inicial".</div>';
+    return;
   }
-  function urlOk(u){
-    if(!u) return false;
-    return /^data:image\//.test(u) || !!urlSegura(u);
-  }
+  l.innerHTML = items.map(i=>`
+    <div class="item-admin">
+      <div class="mini">${urlOk(i.imagen)?`<img src="${esc(i.imagen)}" alt="" onerror="this.parentNode.innerHTML='🎁'">`:"🎁"}</div>
+      <div class="t"><b>${esc(i.nombre)}</b><small>${i.precio!=null&&i.precio!==""?formatoPrecio(i.precio):"Por consultar"}${i.reservado?" · Reservado por "+esc(i.reservado):""}</small></div>
+      <button class="btn-suave" data-adm="editar" data-id="${esc(i.id)}">Editar</button>
+      <button class="btn-peligro" data-adm="borrar" data-id="${esc(i.id)}">Borrar</button>
+    </div>`).join("");
+}
+function renderTodo(){ renderHeader(); renderGrid(); renderAdmin(); }
 
-  function renderAdmin(){
-    const l = $("#listaAdmin");
-    if(!estado.items.length){
-      l.innerHTML = '<div class="vacio">Aún no hay regalos. ¡Agrega el primero!</div>';
-      return;
-    }
-    l.innerHTML = estado.items.map(i=>`
-      <div class="item-admin">
-        <div class="mini">${urlOk(i.imagen)?`<img src="${esc(i.imagen)}" alt="" onerror="this.parentNode.innerHTML='🎁'">`:"🎁"}</div>
-        <div class="t"><b>${esc(i.nombre)}</b><small>${i.precio!=null&&i.precio!==""?formatoPrecio(i.precio):"Por consultar"}${i.reservado?" · Reservado por "+esc(i.reservado):""}</small></div>
-        <button class="btn-suave" data-adm="editar" data-id="${i.id}">Editar</button>
-        <button class="btn-peligro" data-adm="borrar" data-id="${i.id}">Borrar</button>
-      </div>`).join("");
-  }
+/* ---------- Sincronización en tiempo real ---------- */
+if(configurado){
+  onSnapshot(doc(db,"lista","config"), snap=>{
+    config = snap.exists() ? {...CONFIG_DEFECTO,...snap.data()} : {...CONFIG_DEFECTO};
+    renderHeader();
+  }, err=>console.error(err));
 
-  function renderTodo(){ renderHeader(); renderGrid(); renderAdmin(); }
-
-  /* ---------- Eventos globales ---------- */
-  document.addEventListener("click", e=>{
-    if(e.target.matches("[data-cerrar]")){ cerrarOverlay(e.target.closest(".overlay")); }
-    if(e.target.classList.contains("overlay") && e.target.id !== "modalForm"){ cerrarOverlay(e.target); }
-  });
-  document.addEventListener("keydown", e=>{ if(e.key === "Escape") cerrarTodos(); });
-
-  /* Filtros */
-  $("#filtros").addEventListener("click", e=>{
-    const b = e.target.closest(".chip"); if(!b) return;
-    filtro = b.dataset.filtro;
-    $$(".chip").forEach(c=>c.classList.toggle("activo", c===b));
-    renderGrid();
+  onSnapshot(collection(db,"regalos"), snap=>{
+    items = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.orden||0)-(b.orden||0));
+    cargado = true;
+    renderGrid(); renderAdmin();
+  }, err=>{
+    console.error(err);
+    cargado = true; renderGrid();
+    toast("No se pudo cargar la lista. Revisa las reglas de Firebase.");
   });
 
-  /* Tarjetas: reservar / liberar */
-  $("#grid").addEventListener("click", e=>{
-    const b = e.target.closest("[data-accion]"); if(!b) return;
-    const id = Number(b.dataset.id);
-    const item = estado.items.find(i=>i.id===id); if(!item) return;
-    if(b.dataset.accion === "reservar"){
-      itemReservando = item;
-      $("#reservarSub").textContent = "Vas a reservar: " + item.nombre;
-      $("#reservarNombre").value = "";
-      $("#reservarError").textContent = "";
-      abrir("#modalReservar");
-      setTimeout(()=>$("#reservarNombre").focus(),50);
-    } else if(b.dataset.accion === "liberar"){
-      item.reservado = "";
-      guardar(); renderTodo(); toast("Reserva liberada");
-    }
-  });
+  setPersistence(auth, inMemoryPersistence).catch(()=>{});
+  onAuthStateChanged(auth, u=>{ esAdmin = !!u; renderTodo(); });
+}
+renderTodo();
 
-  $("#confirmarReserva").addEventListener("click", ()=>{
-    const nombre = $("#reservarNombre").value.trim();
-    if(!nombre){ $("#reservarError").textContent = "Escribe tu nombre para continuar."; return; }
-    const item = estado.items.find(i=>i.id===itemReservando.id);
-    if(item.reservado){ toast("Ups, alguien ya lo reservó"); cerrar("#modalReservar"); renderGrid(); return; }
-    item.reservado = nombre;
-    guardar(); cerrar("#modalReservar"); renderTodo();
+/* ---------- Eventos globales ---------- */
+document.addEventListener("click", e=>{
+  if(e.target.matches("[data-cerrar]")) cerrarOverlay(e.target.closest(".overlay"));
+  if(e.target.classList.contains("overlay") && e.target.id!=="modalForm") cerrarOverlay(e.target);
+});
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") cerrarTodos(); });
+
+$("#filtros").addEventListener("click", e=>{
+  const b=e.target.closest(".chip"); if(!b) return;
+  filtro=b.dataset.filtro;
+  $$(".chip").forEach(c=>c.classList.toggle("activo",c===b));
+  renderGrid();
+});
+
+/* ---------- Reservar / liberar ---------- */
+$("#grid").addEventListener("click", async e=>{
+  const b=e.target.closest("[data-accion]"); if(!b) return;
+  if(necesitaConfig()) return;
+  const item = items.find(i=>i.id===b.dataset.id); if(!item) return;
+  if(b.dataset.accion==="reservar"){
+    itemReservando = item;
+    $("#reservarSub").textContent = "Vas a reservar: " + item.nombre;
+    $("#reservarNombre").value = "";
+    $("#reservarError").textContent = "";
+    abrir("#modalReservar");
+    setTimeout(()=>$("#reservarNombre").focus(),50);
+  } else if(b.dataset.accion==="liberar" && esAdmin){
+    try{ await updateDoc(doc(db,"regalos",item.id),{reservado:""}); toast("Reserva liberada"); }
+    catch(err){ toast("No se pudo liberar"); }
+  }
+});
+
+$("#confirmarReserva").addEventListener("click", async ()=>{
+  const nombre = $("#reservarNombre").value.trim();
+  if(!nombre){ $("#reservarError").textContent="Escribe tu nombre para continuar."; return; }
+  const btn = $("#confirmarReserva"); btn.disabled = true;
+  try{
+    const ref = doc(db,"regalos",itemReservando.id);
+    await runTransaction(db, async tx=>{
+      const s = await tx.get(ref);
+      if(!s.exists()) throw new Error("no-existe");
+      if(s.data().reservado) throw new Error("ya-reservado");
+      tx.update(ref,{reservado:nombre.slice(0,40)});
+    });
+    cerrar("#modalReservar");
     toast("¡Gracias, " + nombre + "! Regalo reservado 💝");
-  });
-  $("#reservarNombre").addEventListener("keydown", e=>{ if(e.key==="Enter") $("#confirmarReserva").click(); });
+  }catch(err){
+    cerrar("#modalReservar");
+    toast(err.message==="ya-reservado" ? "Ups, alguien ya lo reservó 💕" : "No se pudo reservar, intenta de nuevo");
+  }finally{ btn.disabled = false; }
+});
+$("#reservarNombre").addEventListener("keydown", e=>{ if(e.key==="Enter") $("#confirmarReserva").click(); });
 
-  /* Compartir */
-  $("#btnCompartir").addEventListener("click", async ()=>{
-    const url = location.href.split("#")[0];
-    const data = {title:estado.config.titulo, text:"Mira mi lista de deseos 🎁", url};
-    if(navigator.share && /Mobi|Android/i.test(navigator.userAgent)){
-      try{ await navigator.share(data); return; }catch(e){ if(e.name==="AbortError") return; }
-    }
-    $("#enlaceCompartir").value = url;
-    abrir("#modalCompartir");
-  });
-  $("#copiarEnlace").addEventListener("click", async ()=>{
-    const inp = $("#enlaceCompartir");
-    try{ await navigator.clipboard.writeText(inp.value); }
-    catch(e){ inp.select(); document.execCommand("copy"); }
-    toast("Enlace copiado 💌");
-  });
-  $("#whatsapp").addEventListener("click", ()=>{
-    const txt = encodeURIComponent("¡Mira mi lista de deseos para mi cumpleaños! 🎁💕 " + $("#enlaceCompartir").value);
-    window.open("https://wa.me/?text=" + txt, "_blank", "noopener");
-  });
-
-  /* Administrar */
-  $("#btnAdministrar").addEventListener("click", ()=>{
-    if(esAdmin){ renderAdmin(); abrir("#modalAdmin"); return; }
-    $("#loginPass").value = ""; $("#loginError").textContent = "";
-    abrir("#modalLogin");
-    setTimeout(()=>$("#loginPass").focus(),50);
-  });
-  $("#confirmarLogin").addEventListener("click", ()=>{
-    if($("#loginPass").value === estado.config.pass){
-      esAdmin = true;
-      cerrar("#modalLogin"); renderTodo(); abrir("#modalAdmin");
-      toast("Modo administrador activado ⚙");
-    } else {
-      $("#loginError").textContent = "Contraseña incorrecta.";
-    }
-  });
-  $("#loginPass").addEventListener("keydown", e=>{ if(e.key==="Enter") $("#confirmarLogin").click(); });
-  $("#salirAdmin").addEventListener("click", ()=>{
-    cerrarTodos(); terminarSesion(); toast("Saliste del modo administrador");
-  });
-
-  /* Lista admin */
-  $("#listaAdmin").addEventListener("click", e=>{
-    const b = e.target.closest("[data-adm]"); if(!b) return;
-    const id = Number(b.dataset.id);
-    if(b.dataset.adm === "editar") abrirForm(estado.items.find(i=>i.id===id));
-    if(b.dataset.adm === "borrar"){
-      const it = estado.items.find(i=>i.id===id);
-      if(confirm("¿Borrar \"" + it.nombre + "\"?")){
-        estado.items = estado.items.filter(i=>i.id!==id);
-        guardar(); renderTodo(); toast("Regalo eliminado");
-      }
-    }
-  });
-  $("#nuevoRegalo").addEventListener("click", ()=>abrirForm(null));
-
-  /* Formulario de regalo */
-  function abrirForm(item){
-    itemEditando = item;
-    imagenSubida = "";
-    $("#formTitulo").textContent = item ? "Editar regalo" : "Nuevo regalo";
-    $("#fNombre").value = item ? item.nombre : "";
-    $("#fPrecio").value = item && item.precio != null ? item.precio : "";
-    $("#fTienda").value = item ? item.tienda : "";
-    $("#fNota").value = item ? item.nota : "";
-    $("#fImagen").value = item && !/^data:/.test(item.imagen||"") ? (item.imagen||"") : "";
-    $("#fLink").value = item ? item.link : "";
-    $("#fImagenArchivo").value = "";
-    if(item && /^data:/.test(item.imagen||"")) imagenSubida = item.imagen;
-    abrir("#modalForm");
+/* ---------- Compartir ---------- */
+$("#btnCompartir").addEventListener("click", async ()=>{
+  const url = location.href.split("#")[0];
+  const data = {title:config.titulo, text:"Mira mi lista de deseos 🎁", url};
+  if(navigator.share && /Mobi|Android/i.test(navigator.userAgent)){
+    try{ await navigator.share(data); return; }catch(e){ if(e.name==="AbortError") return; }
   }
-  $("#cancelarForm").addEventListener("click", ()=>cerrar("#modalForm"));
+  $("#enlaceCompartir").value = url;
+  abrir("#modalCompartir");
+});
+$("#copiarEnlace").addEventListener("click", async ()=>{
+  const inp=$("#enlaceCompartir");
+  try{ await navigator.clipboard.writeText(inp.value); }
+  catch(e){ inp.select(); document.execCommand("copy"); }
+  toast("Enlace copiado 💌");
+});
+$("#whatsapp").addEventListener("click", ()=>{
+  const txt = encodeURIComponent("¡Mira mi lista de deseos para mi cumpleaños! 🎁💕 " + $("#enlaceCompartir").value);
+  window.open("https://wa.me/?text="+txt,"_blank","noopener");
+});
 
-  $("#fImagenArchivo").addEventListener("change", e=>{
-    const f = e.target.files[0]; if(!f) return;
-    const r = new FileReader();
-    r.onload = ev=>{
-      const img = new Image();
-      img.onload = ()=>{
-        const max = 700;
-        const esc_ = Math.min(1, max/Math.max(img.width,img.height));
-        const c = document.createElement("canvas");
-        c.width = Math.round(img.width*esc_); c.height = Math.round(img.height*esc_);
-        c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-        imagenSubida = c.toDataURL("image/jpeg",.8);
-        toast("Foto cargada ✔");
-      };
-      img.src = ev.target.result;
-    };
-    r.readAsDataURL(f);
-  });
+/* ---------- Administrar (login con Firebase Auth) ---------- */
+$("#btnAdministrar").addEventListener("click", ()=>{
+  if(necesitaConfig()) return;
+  if(esAdmin){ renderAdmin(); abrir("#modalAdmin"); return; }
+  $("#loginPass").value=""; $("#loginError").textContent="";
+  abrir("#modalLogin");
+  setTimeout(()=>$("#loginEmail").focus(),50);
+});
+$("#confirmarLogin").addEventListener("click", async ()=>{
+  const email=$("#loginEmail").value.trim(), pass=$("#loginPass").value;
+  if(!email||!pass){ $("#loginError").textContent="Escribe tu correo y contraseña."; return; }
+  const btn=$("#confirmarLogin"); btn.disabled=true;
+  try{
+    await signInWithEmailAndPassword(auth,email,pass);
+    cerrarSinSalir("#modalLogin");
+    renderAdmin(); abrir("#modalAdmin");
+    toast("Modo administrador activado ⚙");
+  }catch(err){
+    $("#loginError").textContent="Correo o contraseña incorrectos.";
+  }finally{ btn.disabled=false; }
+});
+function cerrarSinSalir(id){ $(id).classList.remove("abierto"); }
+$("#loginPass").addEventListener("keydown", e=>{ if(e.key==="Enter") $("#confirmarLogin").click(); });
+$("#salirAdmin").addEventListener("click", ()=>{ cerrarTodos(); terminarSesion(); toast("Saliste del modo administrador"); });
 
-  $("#formRegalo").addEventListener("submit", e=>{
-    e.preventDefault();
-    const precioTxt = $("#fPrecio").value.trim();
-    const urlImg = $("#fImagen").value.trim();
-    const datos = {
-      nombre: $("#fNombre").value.trim(),
-      precio: precioTxt === "" ? null : Number(precioTxt),
-      tienda: $("#fTienda").value.trim(),
-      nota: $("#fNota").value.trim(),
-      imagen: imagenSubida || (urlImg ? urlSegura(urlImg) : ""),
-      link: urlSegura($("#fLink").value.trim())
+$("#listaAdmin").addEventListener("click", async e=>{
+  const b=e.target.closest("[data-adm]"); if(!b) return;
+  const it = items.find(i=>i.id===b.dataset.id); if(!it) return;
+  if(b.dataset.adm==="editar") abrirForm(it);
+  if(b.dataset.adm==="borrar" && confirm('¿Borrar "' + it.nombre + '"?')){
+    try{ await deleteDoc(doc(db,"regalos",it.id)); toast("Regalo eliminado"); }
+    catch(err){ toast("No se pudo borrar"); }
+  }
+});
+$("#nuevoRegalo").addEventListener("click", ()=>abrirForm(null));
+
+/* ---------- Formulario de regalo ---------- */
+function abrirForm(item){
+  itemEditando = item; imagenSubida = "";
+  $("#formTitulo").textContent = item ? "Editar regalo" : "Nuevo regalo";
+  $("#fNombre").value = item ? item.nombre : "";
+  $("#fPrecio").value = item && item.precio!=null ? item.precio : "";
+  $("#fTienda").value = item ? (item.tienda||"") : "";
+  $("#fNota").value = item ? (item.nota||"") : "";
+  $("#fImagen").value = item && !/^data:/.test(item.imagen||"") ? (item.imagen||"") : "";
+  $("#fLink").value = item ? (item.link||"") : "";
+  $("#fImagenArchivo").value = "";
+  if(item && /^data:/.test(item.imagen||"")) imagenSubida = item.imagen;
+  abrir("#modalForm");
+}
+$("#cancelarForm").addEventListener("click", ()=>cerrar("#modalForm"));
+
+$("#fImagenArchivo").addEventListener("change", e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=700, k=Math.min(1,max/Math.max(img.width,img.height));
+      const c=document.createElement("canvas");
+      c.width=Math.round(img.width*k); c.height=Math.round(img.height*k);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+      imagenSubida=c.toDataURL("image/jpeg",.8);
+      toast("Foto cargada ✔");
     };
-    if(!datos.nombre) return;
+    img.src=ev.target.result;
+  };
+  r.readAsDataURL(f);
+});
+
+$("#formRegalo").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const precioTxt=$("#fPrecio").value.trim();
+  const urlImg=$("#fImagen").value.trim();
+  const datos={
+    nombre:$("#fNombre").value.trim(),
+    precio:precioTxt===""?null:Number(precioTxt),
+    tienda:$("#fTienda").value.trim(),
+    nota:$("#fNota").value.trim(),
+    imagen:imagenSubida || (urlImg?urlSegura(urlImg):""),
+    link:urlSegura($("#fLink").value.trim())
+  };
+  if(!datos.nombre) return;
+  const btn=$("#guardarRegalo"); btn.disabled=true;
+  try{
     if(itemEditando){
-      Object.assign(estado.items.find(i=>i.id===itemEditando.id), datos);
+      await updateDoc(doc(db,"regalos",itemEditando.id),datos);
       toast("Regalo actualizado ✔");
     } else {
-      const nuevoId = estado.items.reduce((m,i)=>Math.max(m,i.id),0) + 1;
-      estado.items.push(Object.assign({id:nuevoId, reservado:""}, datos));
+      await addDoc(collection(db,"regalos"),{...datos,reservado:"",orden:Date.now()});
       toast("Regalo agregado 🎁");
     }
-    guardar(); cerrar("#modalForm"); renderTodo();
-  });
+    cerrar("#modalForm");
+  }catch(err){
+    console.error(err);
+    toast("No se pudo guardar (¿sesión vencida o foto muy grande?)");
+  }finally{ btn.disabled=false; }
+});
 
-  /* Encabezado */
-  $("#editarPagina").addEventListener("click", ()=>{
-    const c = estado.config;
-    $("#hTitulo").value = c.titulo;
-    $("#hFecha").value = c.fecha;
-    $("#hMensaje").value = c.mensaje;
-    $("#hPass").value = "";
-    abrir("#modalHeader");
-  });
-  $("#guardarHeader").addEventListener("click", ()=>{
-    const c = estado.config;
-    c.titulo = $("#hTitulo").value.trim() || c.titulo;
-    c.fecha = $("#hFecha").value || c.fecha;
-    c.mensaje = $("#hMensaje").value.trim() || c.mensaje;
-    const p = $("#hPass").value.trim();
-    if(p) c.pass = p;
-    guardar(); cerrar("#modalHeader"); renderTodo(); toast("Encabezado actualizado ✔");
-  });
+/* ---------- Encabezado ---------- */
+$("#editarPagina").addEventListener("click", ()=>{
+  $("#hTitulo").value=config.titulo;
+  $("#hFecha").value=config.fecha;
+  $("#hMensaje").value=config.mensaje;
+  abrir("#modalHeader");
+});
+$("#guardarHeader").addEventListener("click", async ()=>{
+  const nuevo={
+    titulo:$("#hTitulo").value.trim()||config.titulo,
+    fecha:$("#hFecha").value||config.fecha,
+    mensaje:$("#hMensaje").value.trim()||config.mensaje
+  };
+  try{
+    await setDoc(doc(db,"lista","config"),nuevo,{merge:true});
+    cerrar("#modalHeader"); toast("Encabezado actualizado ✔");
+  }catch(err){ toast("No se pudo guardar el encabezado"); }
+});
 
-  /* Herramientas admin */
-  $("#liberarTodos").addEventListener("click", ()=>{
-    if(confirm("¿Liberar todas las reservas?")){
-      estado.items.forEach(i=>i.reservado="");
-      guardar(); renderTodo(); toast("Todas las reservas liberadas");
-    }
-  });
-  $("#restablecer").addEventListener("click", ()=>{
-    if(confirm("Esto borrará tus cambios y volverá a la lista inicial. ¿Continuar?")){
-      estado = JSON.parse(JSON.stringify(DEFECTO));
-      guardar(); renderTodo(); toast("Lista restablecida");
-    }
-  });
-  $("#exportar").addEventListener("click", ()=>{
-    const blob = new Blob([JSON.stringify(estado,null,2)],{type:"application/json"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "lista-deseos-lili.json";
-    a.click();
-    URL.revokeObjectURL(a.href);
-    toast("Copia exportada ⬇");
-  });
-  $("#importar").addEventListener("click", ()=>$("#archivoImportar").click());
-  $("#archivoImportar").addEventListener("change", e=>{
-    const f = e.target.files[0]; if(!f) return;
-    const r = new FileReader();
-    r.onload = ev=>{
-      try{
-        const d = JSON.parse(ev.target.result);
-        if(!d.config || !Array.isArray(d.items)) throw 0;
-        estado = d; guardar(); renderTodo(); toast("Copia importada ✔");
-      }catch(err){ toast("Archivo no válido"); }
-    };
-    r.readAsText(f);
-    e.target.value = "";
-  });
-
-  renderTodo();
-})();
+/* ---------- Herramientas admin ---------- */
+$("#liberarTodos").addEventListener("click", async ()=>{
+  if(!confirm("¿Liberar todas las reservas?")) return;
+  try{
+    const batch=writeBatch(db);
+    items.filter(i=>i.reservado).forEach(i=>batch.update(doc(db,"regalos",i.id),{reservado:""}));
+    await batch.commit();
+    toast("Todas las reservas liberadas");
+  }catch(err){ toast("No se pudo completar"); }
+});
+$("#cargarInicial").addEventListener("click", async ()=>{
+  const msg = items.length
+    ? "Ya hay regalos. Esto agregará la lista inicial de nuevo (puede duplicar). ¿Continuar?"
+    : "¿Cargar la lista inicial de 12 regalos?";
+  if(!confirm(msg)) return;
+  try{
+    const batch=writeBatch(db);
+    const base=Date.now();
+    ITEMS_DEFECTO.forEach((x,i)=>{
+      batch.set(doc(collection(db,"regalos")),{...x,reservado:"",orden:base+i});
+    });
+    await batch.commit();
+    toast("Lista inicial cargada 🎁");
+  }catch(err){ toast("No se pudo cargar la lista"); }
+});
 </script>
 </body>
 </html>
