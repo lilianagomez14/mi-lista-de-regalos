@@ -260,9 +260,12 @@
 
     <hr class="sep">
     <div class="modal-acciones" style="margin-top:0">
+      <button class="btn btn-fuerte" id="importarJson">⬆ Importar JSON</button>
+      <button class="btn btn-suave" id="exportarJson">⬇ Exportar JSON</button>
       <button class="btn btn-suave" id="cargarInicial">Cargar lista inicial</button>
       <button class="btn btn-suave" id="liberarTodos">Liberar reservas</button>
     </div>
+    <input type="file" id="archivoJson" accept=".json,application/json" hidden>
 
     <div class="modal-acciones">
       <button class="btn btn-suave" data-cerrar>Cerrar y salir</button>
@@ -343,13 +346,12 @@ import {
    (Firebase Console → Configuración del proyecto → Tus apps → Web)
    ============================================================ */
 const firebaseConfig = {
-  apiKey: "AIzaSyD702iGwKqjs81EQoJC7NAxxYxM2QMlYVI",
-  authDomain: "mi-lista-de-deseos-68aae.firebaseapp.com",
-  projectId: "mi-lista-de-deseos-68aae",
-  storageBucket: "mi-lista-de-deseos-68aae.firebasestorage.app",
-  messagingSenderId: "56862790251",
-  appId: "1:56862790251:web:6f6e5d202edc6f5196d72e",
-  measurementId: "G-6Y7YP602X7"
+  apiKey: "PEGA_AQUI",
+  authDomain: "PEGA_AQUI",
+  projectId: "PEGA_AQUI",
+  storageBucket: "PEGA_AQUI",
+  messagingSenderId: "PEGA_AQUI",
+  appId: "PEGA_AQUI"
 };
 /* ============================================================ */
 
@@ -724,6 +726,91 @@ $("#liberarTodos").addEventListener("click", async ()=>{
     toast("Todas las reservas liberadas");
   }catch(err){ toast("No se pudo completar"); }
 });
+/* ---------- Importar / exportar JSON ---------- */
+function normalizarRegalo(o){
+  const pick = (...ks)=>{ for(const k of ks){ if(o[k]!=null && o[k]!=="") return o[k]; } return ""; };
+  let precio = pick("precio","price","valor","costo");
+  if(typeof precio === "string"){
+    const n = Number(precio.replace(/[^\d]/g,""));
+    precio = precio.trim()==="" || !n ? null : n;
+  } else if(typeof precio !== "number"){ precio = null; }
+  let reservado = pick("reservado","reservadoPor","reservedBy","reservado_por");
+  if(typeof reservado === "boolean") reservado = reservado ? "Reservado" : "";
+  const imagen = String(pick("imagen","image","img","foto","imagenUrl","imageUrl"));
+  return {
+    nombre: String(pick("nombre","name","title","titulo","regalo")).trim().slice(0,80),
+    precio,
+    tienda: String(pick("tienda","store","marca","brand","shop")).trim().slice(0,40),
+    nota: String(pick("nota","notas","detalles","descripcion","description","note")).trim().slice(0,200),
+    imagen: urlOk(imagen) ? imagen : "",
+    link: urlSegura(String(pick("link","url","enlace","linkCompra","comprar"))),
+    reservado: String(reservado||"").trim().slice(0,40)
+  };
+}
+async function commitEnLotes(ops){
+  for(let i=0;i<ops.length;i+=400){
+    const batch = writeBatch(db);
+    ops.slice(i,i+400).forEach(fn=>fn(batch));
+    await batch.commit();
+  }
+}
+$("#importarJson").addEventListener("click", ()=>$("#archivoJson").click());
+$("#archivoJson").addEventListener("change", e=>{
+  const f = e.target.files[0]; e.target.value = ""; if(!f) return;
+  const r = new FileReader();
+  r.onload = async ev=>{
+    let data;
+    try{ data = JSON.parse(ev.target.result); }
+    catch(err){ toast("El archivo no es un JSON válido"); return; }
+    const lista = Array.isArray(data) ? data : (data.items||data.regalos||data.gifts||data.wishes||data.lista||[]);
+    if(!Array.isArray(lista) || !lista.length){ toast("No encontré regalos en el archivo"); return; }
+    const nuevos = lista.filter(x=>x && typeof x==="object").map(normalizarRegalo).filter(x=>x.nombre);
+    if(!nuevos.length){ toast("Los regalos del archivo no tienen nombre"); return; }
+
+    const reemplazar = confirm(
+      "Encontré " + nuevos.length + " regalos.\n\n" +
+      "Aceptar = REEMPLAZAR la lista actual por esta.\n" +
+      "Cancelar = elegir otra opción."
+    );
+    if(!reemplazar && !confirm("¿Agregarlos a los que ya tienes (sin borrar nada)?")) return;
+
+    try{
+      const ops = [];
+      if(reemplazar) items.forEach(i=>ops.push(b=>b.delete(doc(db,"regalos",i.id))));
+      const base = Date.now();
+      nuevos.forEach((x,i)=>ops.push(b=>b.set(doc(collection(db,"regalos")),{...x,orden:base+i})));
+      await commitEnLotes(ops);
+
+      const c = data && !Array.isArray(data) && data.config;
+      if(c && typeof c === "object"){
+        const cfg = {};
+        if(typeof c.titulo==="string" && c.titulo.trim()) cfg.titulo = c.titulo.trim().slice(0,60);
+        if(typeof c.mensaje==="string" && c.mensaje.trim()) cfg.mensaje = c.mensaje.trim().slice(0,300);
+        if(typeof c.fecha==="string" && /^\d{4}-\d{2}-\d{2}$/.test(c.fecha)) cfg.fecha = c.fecha;
+        if(Object.keys(cfg).length) await setDoc(doc(db,"lista","config"),cfg,{merge:true});
+      }
+      toast("Importados " + nuevos.length + " regalos ✔");
+    }catch(err){
+      console.error(err);
+      toast("No se pudo importar (¿sesión vencida o archivo muy pesado?)");
+    }
+  };
+  r.readAsText(f);
+});
+$("#exportarJson").addEventListener("click", ()=>{
+  const datos = {
+    config,
+    items: items.map(({id,...resto})=>resto)
+  };
+  const blob = new Blob([JSON.stringify(datos,null,2)],{type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "lista-deseos-lili.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("Copia exportada ⬇");
+});
+
 $("#cargarInicial").addEventListener("click", async ()=>{
   const msg = items.length
     ? "Ya hay regalos. Esto agregará la lista inicial de nuevo (puede duplicar). ¿Continuar?"
